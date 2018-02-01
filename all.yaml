@@ -3,28 +3,25 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    app: front
     tier: frontend
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: frontend
+    tier: frontend
 ---
 apiVersion: v1
 kind: ReplicationController
 metadata:
   name: frontend
   labels:
-    app: guestbook
     tier: frontend
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: guestbook
         tier: frontend
     spec:
       containers:
